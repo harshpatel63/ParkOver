@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/ic_location"
+        android:iconTint="#00E676"
+        android:title="MAP" />
+
+    <item
+        android:id="@+id/ar"
+        android:icon="@drawable/ic_eye"
+        android:iconTint="#00B0FF"
+        android:title="AR" />
+
+</menu>

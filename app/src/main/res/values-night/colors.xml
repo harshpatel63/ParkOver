@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="blackDN">#FFFFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="whiteGreen">#2196F3</color>
+    <color name="whiteDN">#FF000000</color>
+    <color name="blueSky">#2196F3</color>
+    <color name="lightGrey">#1976D2</color>
+    <color name="card2DN">#082c6c</color>
+
+    <color name="lightWhiteDN">#082c6c</color>
+    <color name="background_theme">#082c6c</color>
+    <color name="background_theme_2">#2196F3</color>
+    <color name="dark_shadow">#0B3383</color>
+    <color name="light_shadow">#0D3E95</color>
+
+</resources>

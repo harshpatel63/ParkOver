@@ -7,4 +7,38 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="blackDN">#FF000000</color>
+    <color name="whiteGreen">#FFFFFFFF</color>
+    <color name="whiteDN">#FFFFFFFF</color>
+    <color name="blueSky">#2196F3</color>
+    <color name="darkBlue">#082c6c</color>
+    <color name="lightGrey">#bebebe</color>
+    <color name="card2DN">#7adccf</color>
+    <color name="lightWhiteDN">#EDEDED</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Dashboard Colors -->
+    <!-- Body and Background Colors -->
+    <color name="home_background">#f2f5f8</color>
+    <color name="banner_background">#F1E9CE</color>
+
+    <!-- Card Colors -->
+    <color name="card1">#d4cbe5</color>
+    <color name="card2">#7adccf</color>
+    <color name="card3">#f7c59f</color>
+    <color name="card4">#b8d7f5</color>
+    <color name="lightWhite">#EDEDED</color>
+
+    <!--    Custom colors-->
+    <color name="primary">#2d7df6</color>
+    <color name="background">#E4EBF5</color>
+    <color name="background_theme">#E4EBF5</color>
+    <color name="background_theme_2">#fff</color>
+    <color name="primary_text">#0B0D0C</color>
+    <color name="secondary_text">#7D818A</color>
+    <color name="dark_shadow">#CDD5EA</color>
+    <color name="light_shadow">#F8F9FE</color>
+    <color name="dark_icon">#212121</color>
+
 </resources>

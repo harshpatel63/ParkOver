@@ -189,13 +189,16 @@ class HelloGeoRenderer(val fragment: ARFragment) :
     if(earth.trackingState != TrackingState.TRACKING) return
     earthAnchor?.detach()
     val altitude = earth.cameraGeospatialPose.altitude - 1.5
+    val q = earth.cameraGeospatialPose.eastUpSouthQuaternion
     val qx = 0f
     val qy = 0f
     val qz = 0f
     val qw = 1f
-    earthAnchor = earth.createAnchor(latLng.latitude, latLng.longitude, altitude, qx, qy, qz, qw)
+    earthAnchor = earth.createAnchor(latLng.latitude, latLng.longitude, altitude, qx, q[1], qz, q[3])
 
     fragment.view.mapView?.earthMarker?.apply {
+      isDraggable = true
+      rotation = earth.cameraGeospatialPose.heading.toFloat()
       position = latLng
       isVisible = true
     }

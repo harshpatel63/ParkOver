@@ -4,18 +4,13 @@ import android.opengl.Matrix
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.example.parkover.MainActivity
+import com.example.parkover.examples.java.common.helpers.DisplayRotationHelper
+import com.example.parkover.examples.java.common.helpers.TrackingStateHelper
+import com.example.parkover.examples.java.common.samplerender.*
+import com.example.parkover.examples.java.common.samplerender.arcore.BackgroundRenderer
 import com.google.android.gms.maps.model.LatLng
 import com.google.ar.core.Anchor
 import com.google.ar.core.TrackingState
-import com.example.parkover.examples.java.common.helpers.DisplayRotationHelper
-import com.example.parkover.examples.java.common.helpers.TrackingStateHelper
-import com.example.parkover.examples.java.common.samplerender.Framebuffer
-import com.example.parkover.examples.java.common.samplerender.Mesh
-import com.example.parkover.examples.java.common.samplerender.SampleRender
-import com.example.parkover.examples.java.common.samplerender.Shader
-import com.example.parkover.examples.java.common.samplerender.Texture
-import com.example.parkover.examples.java.common.samplerender.arcore.BackgroundRenderer
 import com.google.ar.core.exceptions.CameraNotAvailableException
 import java.io.IOException
 
@@ -169,6 +164,11 @@ class HelloGeoRenderer(val fragment: ARFragment) :
         longitude = cameraGeospatialPose.longitude,
         heading = cameraGeospatialPose.heading
       )
+      if(fragment.viewModel.trackingState.value != "Tracking")
+        fragment.viewModel._trackingState.postValue("Tracking")
+    } else {
+      if(fragment.viewModel.trackingState.value != "Not Tracking")
+        fragment.viewModel._trackingState.postValue("Not Tracking")
     }
 
     earth?.let { fragment.view.updateStatusText(it, earth.cameraGeospatialPose) }

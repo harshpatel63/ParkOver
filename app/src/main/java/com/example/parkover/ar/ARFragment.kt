@@ -2,15 +2,13 @@ package com.example.parkover.ar
 
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.parkover.MainActivity
-import com.example.parkover.databinding.FragmentArBinding
-import com.example.parkover.examples.java.common.helpers.FullScreenHelper
 import com.example.parkover.examples.java.common.samplerender.SampleRender
 import com.example.parkover.helpers.ARCoreSessionLifecycleHelper
 import com.example.parkover.helpers.GeoPermissionsHelper
@@ -18,6 +16,7 @@ import com.example.parkover.helpers.HelloGeoView
 import com.google.ar.core.Config
 import com.google.ar.core.Session
 import com.google.ar.core.exceptions.*
+
 
 class ARFragment : Fragment() {
     companion object {
@@ -28,12 +27,32 @@ class ARFragment : Fragment() {
     lateinit var view: HelloGeoView
     lateinit var renderer: HelloGeoRenderer
 
+    lateinit var viewModel: ARViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return setupAr()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(ARViewModel::class.java)
+        subscribeToLiveData()
+    }
+
+    private fun subscribeToLiveData() {
+        viewModel.trackingState.observe(viewLifecycleOwner) {
+            timePass()
+        }
+    }
+
+    private fun timePass() {
+        (activity as MainActivity).lastMarker?.let {
+            renderer.onMapClick(it.position)
+        }
     }
 
     private fun setupAr(): View? {

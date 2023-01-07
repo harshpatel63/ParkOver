@@ -20,12 +20,10 @@ import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.example.parkover.MainActivity
 import com.example.parkover.R
 import com.example.parkover.ar.ARFragment
 import com.example.parkover.examples.java.common.helpers.SnackbarHelper
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import com.google.ar.core.Earth
 import com.google.ar.core.GeospatialPose
 
@@ -40,13 +38,13 @@ class HelloGeoView(val fragment: ARFragment) : DefaultLifecycleObserver {
   val snackbarHelper = SnackbarHelper()
 
   var mapView: MapView? = null
-  val mapTouchWrapper = root.findViewById<MapTouchWrapper>(R.id.map_wrapper).apply {
-    setup { screenLocation ->
-      val latLng: LatLng =
-        mapView?.googleMap?.projection?.fromScreenLocation(screenLocation) ?: return@setup
-      fragment.renderer.onMapClick(latLng)
-    }
-  }
+//  val mapTouchWrapper = root.findViewById<MapTouchWrapper>(R.id.map_wrapper).apply {
+//    setup { screenLocation ->
+//      val latLng: LatLng =
+//        mapView?.googleMap?.projection?.fromScreenLocation(screenLocation) ?: return@setup
+//      fragment.renderer.onMapClick(latLng)
+//    }
+//  }
   val mapFragment =
     (fragment.requireFragmentManager().findFragmentById(R.id.map)!! as SupportMapFragment).also {
       it.getMapAsync { googleMap -> mapView = MapView(fragment, googleMap) }

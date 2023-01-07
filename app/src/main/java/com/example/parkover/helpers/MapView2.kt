@@ -15,26 +15,15 @@
  */
 package com.example.parkover.helpers
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.LightingColorFilter
-import android.graphics.Paint
+import android.graphics.*
 import androidx.annotation.ColorInt
-import androidx.fragment.app.Fragment
-import com.example.parkover.MainActivity
 import com.example.parkover.R
-import com.example.parkover.ar.ARFragment
+import com.example.parkover.add.AddActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 
-class MapView(val fragment: Fragment, val googleMap: GoogleMap) {
+class MapView2(val activity: AddActivity, val googleMap: GoogleMap) {
   private val CAMERA_MARKER_COLOR: Int = Color.argb(255, 0, 255, 0)
   private val EARTH_MARKER_COLOR: Int = Color.argb(255, 125, 125, 125)
 
@@ -62,7 +51,7 @@ class MapView(val fragment: Fragment, val googleMap: GoogleMap) {
 
   fun updateMapPosition(latitude: Double, longitude: Double, heading: Double) {
     val position = LatLng(latitude, longitude)
-    fragment.requireActivity().runOnUiThread {
+    activity.runOnUiThread {
       // If the map is already in the process of a camera update, then don't move it.
       if (!cameraIdle) {
         return@runOnUiThread
@@ -105,11 +94,11 @@ class MapView(val fragment: Fragment, val googleMap: GoogleMap) {
     opt.inMutable = true
     opt.inSampleSize = 3
     val navigationIcon =
-      BitmapFactory.decodeResource(fragment.requireActivity().resources, R.drawable.ic_navigation_white_48dp, opt)
+      BitmapFactory.decodeResource(activity.resources, R.drawable.ic_navigation_white_48dp, opt)
     val p = Paint()
-    p.colorFilter = LightingColorFilter(color,1)
+    p.colorFilter = LightingColorFilter(color,  /* add= */1)
     val canvas = Canvas(navigationIcon)
-    canvas.drawBitmap(navigationIcon,0f,0f, p)
+    canvas.drawBitmap(navigationIcon,  /* left= */0f,  /* top= */0f, p)
     return navigationIcon
   }
 }

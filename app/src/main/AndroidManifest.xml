@@ -33,6 +33,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".add.AddActivity"
+            android:exported="false"/>
 
         <meta-data android:name="com.google.ar.core" android:value="required" />
 

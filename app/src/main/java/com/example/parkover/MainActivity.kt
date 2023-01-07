@@ -1,23 +1,19 @@
 package com.example.parkover
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.location.Address
-import android.location.Geocoder
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.parkover.add.AddActivity
 import com.example.parkover.ar.ARFragment
 import com.example.parkover.databinding.ActivityMainBinding
 import com.example.parkover.databinding.CarBikeDailogeBinding
 import com.example.parkover.map.MapFragment
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import nl.joery.animatedbottombar.AnimatedBottomBar
-import java.io.IOException
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +32,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+        binding.add.setOnClickListener {
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
+        }
         binding.carBike.setOnClickListener {
             val dailogeBinding = CarBikeDailogeBinding.inflate(layoutInflater)
             val myDailoge = Dialog(this)
@@ -66,12 +66,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             //Animation start
-            binding.nav.setOnClickListener {
-                binding.nav.animate().apply {
+            binding.add.setOnClickListener {
+                binding.add.animate().apply {
                     duration = 1000
                     rotationYBy(360f)
                 }.withEndAction {
-                    binding.nav.animate().apply {
+                    binding.add.animate().apply {
                         duration = 1000
                         rotationYBy(3600f)
                     }.start()

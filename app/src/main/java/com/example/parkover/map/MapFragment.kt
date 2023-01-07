@@ -51,6 +51,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mGoogleMap?.let {
             it.mapType = GoogleMap.MAP_TYPE_NORMAL
             it.setMaxZoomPreference(21f)
+            it.addMarker(MarkerOptions().position((activity as MainActivity).latLng))
             it.setOnMapClickListener { latlng ->
                 (activity as MainActivity).lastMarker = MarkerOptions().position(latlng)
                 (activity as MainActivity).lastMarker?.let { it2 ->

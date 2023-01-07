@@ -12,16 +12,15 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"/>
 
-
         <RelativeLayout
             android:layout_width="230dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:background="@drawable/bg_menu"
-            android:backgroundTint="#E1F5FE"
+            android:backgroundTint="@color/white"
             android:gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
-            android:padding="5dp">
+            android:paddingVertical="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -29,8 +28,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="Find parking"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textSize="18sp"/>
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -48,11 +46,13 @@
             android:layout_height="42dp"
             android:src="@drawable/ic_car_24"
             android:background="@drawable/bg_menu"
-            android:backgroundTint="#E1F5FE"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="14dp"
-            android:padding="10dp"/>
+            android:backgroundTint="@color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            app:tint="@color/black" />
+
         <ImageView
             android:id="@+id/empty"
             android:layout_width="50dp"
@@ -70,34 +70,36 @@
 
         <nl.joery.animatedbottombar.AnimatedBottomBar
             android:id="@+id/bottom_bar"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="60dp"
             android:background="@drawable/bg_menu"
-            android:backgroundTint="#E1F5FE"
+            android:backgroundTint="@color/white"
             app:abb_indicatorAppearance="round"
             app:abb_indicatorHeight="4dp"
             app:abb_selectedIndex="0"
-            app:abb_selectedTabType="text"
+            app:abb_selectedTabType="icon"
+            app:abb_tabColorSelected="@color/blueSky"
+            app:abb_tabColor="@color/black"
             app:abb_tabs="@menu/tabs" />
         <ImageView
             android:id="@+id/nav"
             android:layout_width="60dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="#66BB6A"
+            android:layout_marginBottom="62dp"
+            android:backgroundTint="@color/white"
             android:background="@drawable/bg_menu"
-            android:padding="5dp"
+            android:padding="3dp"
             android:src="@drawable/ic_outline_navigation" />
 
 </RelativeLayout>

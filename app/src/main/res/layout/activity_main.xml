@@ -24,13 +24,15 @@
             android:layout_centerHorizontal="true"
             android:paddingVertical="5dp">
 
-            <EditText
+            <AutoCompleteTextView
+                android:id="@+id/et_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:hint="@string/where_are_you_going_to"
                 android:textColorHint="@color/black"
                 android:background="@null"
+                android:inputType="textAutoComplete"
                 android:textColor="@color/black"
                 android:drawableStart="@drawable/search_shape"
                 android:drawablePadding="10dp"

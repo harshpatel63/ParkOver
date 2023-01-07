@@ -3,6 +3,8 @@ package com.example.parkover
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,8 +12,12 @@ import com.example.parkover.ar.ARFragment
 import com.example.parkover.databinding.ActivityMainBinding
 import com.example.parkover.databinding.CarBikeDailogeBinding
 import com.example.parkover.map.MapFragment
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import java.io.IOException
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 

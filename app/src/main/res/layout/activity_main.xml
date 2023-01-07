@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"/>
 
+
         <RelativeLayout
             android:layout_width="230dp"
             android:layout_height="40dp"
@@ -41,7 +42,6 @@
                 app:tint="@color/black" />
 
         </RelativeLayout>
-
         <ImageView
             android:id="@+id/car_bike"
             android:layout_width="50dp"
@@ -67,6 +67,7 @@
             android:padding="10dp"
             app:tint="@color/black" />
 
+
         <nl.joery.animatedbottombar.AnimatedBottomBar
             android:id="@+id/bottom_bar"
             android:layout_width="100dp"
@@ -84,7 +85,6 @@
             app:abb_selectedIndex="0"
             app:abb_selectedTabType="text"
             app:abb_tabs="@menu/tabs" />
-
         <ImageView
             android:id="@+id/nav"
             android:layout_width="60dp"

@@ -38,11 +38,11 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="vV2uNi3pbApBS7gADCBvSxT0wgtGKsrBt5B6qRbiQVeosrtHvIXaUfRnQ2H9cF8A" />
 
         <meta-data
             android:name="com.google.android.ar.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="vV2uNi3pbApBS7gADCBvSxT0wgtGKsrBt5B6qRbiQVeosrtHvIXaUfRnQ2H9cF8A" />
 
     </application>
 

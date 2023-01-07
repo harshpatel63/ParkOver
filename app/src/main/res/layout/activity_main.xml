@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"/>
 
+
         <RelativeLayout
-            android:layout_width="210dp"
+            android:layout_width="230dp"
             android:layout_height="40dp"
             android:background="@drawable/bg_menu"
             android:backgroundTint="#E1F5FE"
@@ -42,6 +42,31 @@
                 app:tint="@color/black" />
 
         </RelativeLayout>
+        <ImageView
+            android:id="@+id/car_bike"
+            android:layout_width="50dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_car_24"
+            android:background="@drawable/bg_menu"
+            android:backgroundTint="#E1F5FE"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="14dp"
+            android:padding="10dp"/>
+        <ImageView
+            android:id="@+id/empty"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:src="@android:drawable/ic_lock_power_off"
+            android:background="@drawable/bg_menu"
+            android:backgroundTint="#E1F5FE"
+            android:visibility="gone"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="14dp"
+            android:padding="10dp"
+            app:tint="@color/black" />
+
 
         <nl.joery.animatedbottombar.AnimatedBottomBar
             android:id="@+id/bottom_bar"
@@ -49,16 +74,19 @@
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_margin="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/bg_menu"
-            android:backgroundTint="#66BB6A"
+            android:backgroundTint="#E1F5FE"
             app:abb_indicatorAppearance="round"
             app:abb_indicatorHeight="4dp"
             app:abb_selectedIndex="0"
             app:abb_selectedTabType="text"
             app:abb_tabs="@menu/tabs" />
-
         <ImageView
+            android:id="@+id/nav"
             android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
@@ -67,10 +95,9 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="15dp"
+            android:backgroundTint="#66BB6A"
             android:background="@drawable/bg_menu"
-            android:backgroundTint="#E1F5FE"
             android:padding="5dp"
             android:src="@drawable/ic_outline_navigation" />
-
 
 </RelativeLayout>

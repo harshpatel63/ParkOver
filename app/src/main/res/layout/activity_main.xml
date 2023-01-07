@@ -14,56 +14,40 @@
 
 
         <RelativeLayout
-            android:layout_width="230dp"
-            android:layout_height="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/bg_menu"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
+            android:elevation="5dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="60dp"
             android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
             android:paddingVertical="5dp">
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="Find parking"
-                android:textColor="@color/black"
-                android:textSize="18sp"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_search_24"
-                app:tint="@color/black" />
+                android:hint="@string/where_are_you_going_to"
+                android:textColorHint="@color/black"
+                android:background="@null"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/search_shape"
+                android:drawablePadding="10dp"
+                android:textSize="18sp"/>
 
         </RelativeLayout>
         <ImageView
             android:id="@+id/car_bike"
-            android:layout_width="50dp"
-            android:layout_height="42dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_car_24"
+            android:elevation="5dp"
             android:background="@drawable/bg_menu"
             android:backgroundTint="@color/white"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="65dp"
             android:layout_marginEnd="10dp"
-            android:padding="10dp"
-            app:tint="@color/black" />
-        <ImageView
-            android:id="@+id/empty"
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:src="@android:drawable/ic_lock_power_off"
-            android:background="@drawable/bg_menu"
-            android:backgroundTint="#E1F5FE"
-            android:visibility="gone"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="14dp"
             android:padding="10dp"
             app:tint="@color/black" />
 
@@ -78,29 +62,31 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="60dp"
+            android:elevation="5dp"
             android:background="@drawable/bg_menu"
             android:backgroundTint="@color/white"
-            app:abb_indicatorAppearance="round"
-            app:abb_indicatorHeight="4dp"
+            app:abb_indicatorAppearance="invisible"
+            app:abb_indicatorLocation="bottom"
             app:abb_selectedIndex="0"
-            app:abb_selectedTabType="icon"
+            app:abb_tabAnimation="fade"
             app:abb_tabColorSelected="@color/blueSky"
-            app:abb_tabColor="@color/black"
             app:abb_tabs="@menu/tabs" />
 
-        <ImageView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/nav"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
+            android:text="@string/add"
+            android:elevation="5dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="62dp"
-            android:backgroundTint="@color/white"
-            android:background="@drawable/bg_menu"
-            android:padding="3dp"
-            android:src="@drawable/ic_outline_navigation" />
+            android:background="@drawable/bg_button"
+            android:drawableTint="@color/white"
+            android:drawablePadding="20dp"
+            android:drawableLeft="@drawable/plus_shape"/>
 
 </RelativeLayout>

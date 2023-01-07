@@ -16,7 +16,6 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var bottomBar: AnimatedBottomBar
     var lastMarker: MarkerOptions? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,60 +1,100 @@
 package com.example.parkover.ar
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.parkover.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.parkover.MainActivity
+import com.example.parkover.databinding.FragmentArBinding
+import com.example.parkover.examples.java.common.helpers.FullScreenHelper
+import com.example.parkover.examples.java.common.samplerender.SampleRender
+import com.example.parkover.helpers.ARCoreSessionLifecycleHelper
+import com.example.parkover.helpers.GeoPermissionsHelper
+import com.example.parkover.helpers.HelloGeoView
+import com.google.ar.core.Config
+import com.google.ar.core.Session
+import com.google.ar.core.exceptions.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ARFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ARFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    companion object {
+        private const val TAG = "ARFragment"
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    lateinit var arCoreSessionHelper: ARCoreSessionLifecycleHelper
+    lateinit var view: HelloGeoView
+    lateinit var renderer: HelloGeoRenderer
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return setupAr()
+    }
+
+    private fun setupAr(): View? {
+        arCoreSessionHelper = ARCoreSessionLifecycleHelper(this.requireActivity())
+        arCoreSessionHelper.exceptionCallback =
+            { exception ->
+                val message =
+                    when (exception) {
+                        is UnavailableUserDeclinedInstallationException ->
+                            "Please install Google Play Services for AR"
+                        is UnavailableApkTooOldException -> "Please update ARCore"
+                        is UnavailableSdkTooOldException -> "Please update this app"
+                        is UnavailableDeviceNotCompatibleException -> "This device does not support AR"
+                        is CameraNotAvailableException -> "Camera not available. Try restarting the app."
+                        else -> "Failed to create AR session: $exception"
+                    }
+                Log.e(TAG, "ARCore threw an exception", exception)
+                view.snackbarHelper.showError(activity, message)
+            }
+
+        arCoreSessionHelper.beforeSessionResume = ::configureSession
+        lifecycle.addObserver(arCoreSessionHelper)
+
+        // Set up the Hello AR renderer.
+        renderer = HelloGeoRenderer(this)
+        lifecycle.addObserver(renderer)
+
+        // Set up Hello AR UI.
+        view = HelloGeoView(this)
+        lifecycle.addObserver(view)
+
+        // Sets up an example renderer using our HelloGeoRenderer.
+        SampleRender(view.surfaceView, renderer, this.requireActivity().assets)
+
+        return view.root
+    }
+
+    fun configureSession(session: Session) {
+        session.configure(
+            session.config.apply {
+                geospatialMode = Config.GeospatialMode.ENABLED
+            }
+        )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        results: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, results)
+        if (!GeoPermissionsHelper.hasGeoPermissions(this.requireActivity())) {
+            // Use toast instead of snackbar here since the activity will exit.
+            Toast.makeText(requireContext(), "Camera and location permissions are needed to run this application", Toast.LENGTH_LONG)
+                .show()
+            if (!GeoPermissionsHelper.shouldShowRequestPermissionRationale(this.requireActivity())) {
+                // Permission denied with checking "Do not ask again".
+                GeoPermissionsHelper.launchPermissionSettings(this.requireActivity())
+            }
+            this.requireActivity().finish()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ar, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ARFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ARFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

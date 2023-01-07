@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
@@ -46,13 +45,13 @@
         <ImageView
             android:id="@+id/car_bike"
             android:layout_width="50dp"
-            android:layout_height="45dp"
+            android:layout_height="42dp"
             android:src="@drawable/ic_car_24"
             android:background="@drawable/bg_menu"
             android:backgroundTint="#E1F5FE"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="14dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="14dp"
             android:padding="10dp"/>
         <ImageView
             android:id="@+id/empty"
@@ -61,6 +60,7 @@
             android:src="@android:drawable/ic_lock_power_off"
             android:background="@drawable/bg_menu"
             android:backgroundTint="#E1F5FE"
+            android:visibility="gone"
             android:layout_alignParentStart="true"
             android:layout_marginTop="12dp"
             android:layout_marginStart="14dp"
@@ -99,6 +99,5 @@
             android:background="@drawable/bg_menu"
             android:padding="5dp"
             android:src="@drawable/ic_outline_navigation" />
-
 
 </RelativeLayout>

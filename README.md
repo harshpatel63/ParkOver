@@ -12,7 +12,8 @@ Tech Stack :  Android With Kotlin,  DataBase : firebase realtime database, Googl
 
 Reference Link : 
 https://developers.google.com/ar/develop/geospatial  
-https://redirector.gvt1.com/edgedl/arcore/geospatial.gif
+
+![](https://redirector.gvt1.com/edgedl/arcore/geospatial.gif)
 
 
 

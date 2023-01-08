@@ -10,7 +10,9 @@ It has two layers a map layer to show the parking spaces available around the ar
 
 Tech Stack :  Android With Kotlin,  DataBase : firebase realtime database, Google maps api, Geospatial api, ARcore   
 
-
+Reference Link : 
+https://developers.google.com/ar/develop/geospatial  
+https://redirector.gvt1.com/edgedl/arcore/geospatial.gif
 
 
 

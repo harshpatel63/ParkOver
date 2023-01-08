@@ -12,11 +12,18 @@ import com.example.parkover.helpers.HelloGeoView2
 import com.google.ar.core.Config
 import com.google.ar.core.Session
 import com.google.ar.core.exceptions.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class AddActivity: AppCompatActivity() {
     companion object {
         private const val TAG = "AddActivity"
     }
+
+    var firebaseDatabase: FirebaseDatabase? = null
+    var databaseReference: DatabaseReference? = null
+//    private var mAuth: FirebaseAuth? = null
 
     lateinit var arCoreSessionHelper: ARCoreSessionLifecycleHelper
     lateinit var view: HelloGeoView2
@@ -27,8 +34,12 @@ class AddActivity: AppCompatActivity() {
 
         // Setup ARCore session lifecycle helper and configuration.
         arCoreSessionHelper = ARCoreSessionLifecycleHelper(this)
-        // If Session creation or Session.resume() fails, display a message and log detailed
-        // information.
+
+        // initializing all our variables.
+        firebaseDatabase = FirebaseDatabase.getInstance()
+//        mAuth = FirebaseAuth.getInstance()
+        databaseReference = firebaseDatabase!!.getReference("Courses")
+
         arCoreSessionHelper.exceptionCallback =
             { exception ->
                 val message =
@@ -57,6 +68,8 @@ class AddActivity: AppCompatActivity() {
         view = HelloGeoView2(this)
         lifecycle.addObserver(view)
         setContentView(view.root)
+
+
 
         // Sets up an example renderer using our HelloGeoRenderer.
         SampleRender(view.surfaceView, renderer, assets)
@@ -87,10 +100,5 @@ class AddActivity: AppCompatActivity() {
             }
             finish()
         }
-    }
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        FullScreenHelper.setFullScreenOnWindowFocusChanged(this, hasFocus)
     }
 }

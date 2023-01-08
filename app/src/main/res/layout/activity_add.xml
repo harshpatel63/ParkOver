@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/add">
 
     <android.opengl.GLSurfaceView
@@ -9,6 +10,21 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="top" />
+
+    <TextView
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_spot"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:background="@drawable/bg_menu"
+        android:backgroundTint="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/map_wrapper"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        app:tint="@color/black" />
 
     <com.example.parkover.helpers.MapTouchWrapper
         android:id="@+id/map_wrapper"
@@ -21,7 +37,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".HelloGeoActivity" />
+            tools:context=".add.AddActivity" />
 
         <TextView
             android:padding="8dp"

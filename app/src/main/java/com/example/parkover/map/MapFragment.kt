@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.parkover.CoordinateModel
 import com.example.parkover.MainActivity
 import com.example.parkover.R
 import com.example.parkover.databinding.FragmentMapBinding
@@ -54,12 +55,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mGoogleMap?.let {
             it.mapType = GoogleMap.MAP_TYPE_NORMAL
             it.setMaxZoomPreference(21f)
-            it.setOnMapClickListener { latlng ->
-                (activity as MainActivity).lastMarker = MarkerOptions().position(latlng)
-                (activity as MainActivity).lastMarker?.let { it2 ->
-                    it.addMarker(it2)
-                }
-            }
+//            it.setOnMapClickListener { latlng ->
+//                (activity as MainActivity).lastMarker = CoordinateModel(latlng.latitude, latlng.longitude)
+//                (activity as MainActivity).lastMarker?.let { it2 ->
+//                    it.addMarker(it2)
+//                }
+//            }
             moveToCurrentLocation()
         }
     }
@@ -67,8 +68,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private fun refreshMap() {
         mGoogleMap?.let {
             it.clear()
-            for(latlng in (activity as MainActivity).latLng) {
-                it.addMarker(MarkerOptions().position(latlng))
+            for(cm in (activity as MainActivity).listofCM) {
+                (activity as MainActivity).lastMarker = cm
+                it.addMarker(MarkerOptions().position(LatLng(cm.lat, cm.lng)))
             }
         }
 

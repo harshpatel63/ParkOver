@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.parkover.add.AddActivity
@@ -14,22 +13,18 @@ import com.example.parkover.ar.ARFragment
 import com.example.parkover.databinding.ActivityMainBinding
 import com.example.parkover.databinding.CarBikeDailogeBinding
 import com.example.parkover.map.MapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import nl.joery.animatedbottombar.AnimatedBottomBar
-import java.util.UUID
 
 class MainActivity : AppCompatActivity() {
 
     var firebaseDatabase: FirebaseDatabase? = null
     var databaseReference: DatabaseReference? = null
-    private var mAuth: FirebaseAuth? = null
+//    private var mAuth: FirebaseAuth? = null
 
     private lateinit var binding: ActivityMainBinding
-    var lastMarker: MarkerOptions? = null
-    var latLng : ArrayList<LatLng> = ArrayList()
+    var lastMarker: CoordinateModel? = null
+    var listofCM : ArrayList<CoordinateModel> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         // initializing all our variables.
         firebaseDatabase = FirebaseDatabase.getInstance()
-        mAuth = FirebaseAuth.getInstance()
+//        mAuth = FirebaseAuth.getInstance()
         databaseReference = firebaseDatabase!!.getReference("Courses")
 
         setupTab()
@@ -49,15 +44,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getCoordinates() {
-        databaseReference!!.child("hacknitr").addChildEventListener(object : ChildEventListener {
+        databaseReference!!.child("hacknitr63").addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                for(child in snapshot.children){
-                    child.getValue(CoordinateModel::class.java)?.let {
-                            latLng.add(LatLng(it.getLat(), it.getLng()))
-                            Log.i("harsh_debug", it.getLat().toString() + it.getLng().toString())
-                        }
+                snapshot.getValue(CoordinateModel::class.java)?.let {
+                            listofCM.add(it)
+                            Log.i("harsh_debug", it.lat.toString() + it.lng.toString() + it.heading.toString())
                 }
-
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {

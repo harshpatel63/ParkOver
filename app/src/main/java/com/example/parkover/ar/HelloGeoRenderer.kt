@@ -4,6 +4,7 @@ import android.opengl.Matrix
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.example.parkover.CoordinateModel
 import com.example.parkover.examples.java.common.helpers.DisplayRotationHelper
 import com.example.parkover.examples.java.common.helpers.TrackingStateHelper
 import com.example.parkover.examples.java.common.samplerender.*
@@ -184,22 +185,22 @@ class HelloGeoRenderer(val fragment: ARFragment) :
 
   var earthAnchor: Anchor? = null
 
-  fun onMapClick(latLng: LatLng) {
+  fun onMapClick(cm: CoordinateModel) {
     val earth = session?.earth ?: return
     if(earth.trackingState != TrackingState.TRACKING) return
     earthAnchor?.detach()
-    val altitude = earth.cameraGeospatialPose.altitude - 1.5
+    val altitude = -47.3 - 1.5
     val q = earth.cameraGeospatialPose.eastUpSouthQuaternion
     val qx = 0f
     val qy = 0f
     val qz = 0f
     val qw = 1f
-    earthAnchor = earth.createAnchor(latLng.latitude, latLng.longitude, altitude, qx, q[1], qz, q[3])
+    earthAnchor = earth.createAnchor(cm.lat, cm.lng, altitude, qx, q[1], qz, q[3])
 
     fragment.view.mapView?.earthMarker?.apply {
       isDraggable = true
-      rotation = earth.cameraGeospatialPose.heading.toFloat()
-      position = latLng
+      rotation = cm.heading.toFloat()
+      position = LatLng(cm.lat, cm.lng)
       isVisible = true
     }
   }

@@ -15,11 +15,15 @@
  */
 package com.example.parkover.helpers
 
+import android.content.Intent
 import android.opengl.GLSurfaceView
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.example.parkover.CoordinateModel
+import com.example.parkover.MainActivity
 import com.example.parkover.R
 import com.example.parkover.add.AddActivity
 import com.example.parkover.examples.java.common.helpers.SnackbarHelper
@@ -27,9 +31,15 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.ar.core.Earth
 import com.google.ar.core.GeospatialPose
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import java.util.*
+import kotlin.collections.ArrayList
 
 /** Contains UI elements for Hello Geo. */
 class HelloGeoView2(val activity: AddActivity) : DefaultLifecycleObserver {
+    var lastLatLng: CoordinateModel? = null
     val root = View.inflate(activity, R.layout.activity_add, null)
     val surfaceView = root.findViewById<GLSurfaceView>(R.id.surfaceview)
 
@@ -51,6 +61,15 @@ class HelloGeoView2(val activity: AddActivity) : DefaultLifecycleObserver {
             it.getMapAsync { googleMap -> mapView = MapView2(activity, googleMap) }
         }
 
+    val add = root.findViewById<TextView>(R.id.add_button).setOnClickListener {
+        lastLatLng?.let {
+            insertData(it.lat, it.lng, it.heading)
+            Toast.makeText(activity.applicationContext, "Parking Spot Added..", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, MainActivity::class.java)
+            activity.startActivity(intent)
+        }
+    }
+
     val statusText = root.findViewById<TextView>(R.id.statusText)
     fun updateStatusText(earth: Earth, cameraGeospatialPose: GeospatialPose?) {
         activity.runOnUiThread {
@@ -63,6 +82,10 @@ class HelloGeoView2(val activity: AddActivity) : DefaultLifecycleObserver {
                     cameraGeospatialPose.verticalAccuracy,
                     cameraGeospatialPose.heading,
                     cameraGeospatialPose.headingAccuracy)
+            cameraGeospatialPose?.let{
+                    lastLatLng =
+                        CoordinateModel(it.latitude, it.longitude, it.heading)
+                }
             statusText.text = activity.resources.getString(R.string.earth_state,
                 earth.earthState.toString(),
                 earth.trackingState.toString(),
@@ -77,4 +100,21 @@ class HelloGeoView2(val activity: AddActivity) : DefaultLifecycleObserver {
     override fun onPause(owner: LifecycleOwner) {
         surfaceView.onPause()
     }
+
+    private fun insertData(lat: Double, lng: Double, heading: Double) {
+        val coordinateModel = CoordinateModel(lat, lng, heading)
+        val Uid = UUID.randomUUID().toString()
+        activity.databaseReference!!.child("hacknitr63").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                activity.databaseReference!!.child("hacknitr63").child(Uid).setValue(coordinateModel)
+                Toast.makeText(activity.applicationContext, "Parking Spot Added..", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity.applicationContext, "Fail to add Parking spot..", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
 }

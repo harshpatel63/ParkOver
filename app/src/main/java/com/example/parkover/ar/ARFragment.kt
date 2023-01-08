@@ -51,7 +51,7 @@ class ARFragment : Fragment() {
 
     private fun timePass() {
         (activity as MainActivity).lastMarker?.let {
-            renderer.onMapClick(it.position)
+            renderer.onMapClick(it)
         }
     }
 

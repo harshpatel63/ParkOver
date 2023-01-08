@@ -8,4 +8,5 @@
     <string name="map">MAP</string>
     <string name="ar">AR</string>
     <string name="add">add</string>
+    <string name="add_spot">ADD SPOT</string>
 </resources>

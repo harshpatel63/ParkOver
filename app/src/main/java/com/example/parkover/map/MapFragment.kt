@@ -44,6 +44,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val mapFrag = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFrag?.getMapAsync(this)
         mfusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        binding.refresh.setOnClickListener {
+            refreshMap()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -51,7 +54,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mGoogleMap?.let {
             it.mapType = GoogleMap.MAP_TYPE_NORMAL
             it.setMaxZoomPreference(21f)
-            it.addMarker(MarkerOptions().position((activity as MainActivity).latLng))
             it.setOnMapClickListener { latlng ->
                 (activity as MainActivity).lastMarker = MarkerOptions().position(latlng)
                 (activity as MainActivity).lastMarker?.let { it2 ->
@@ -60,6 +62,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
             moveToCurrentLocation()
         }
+    }
+
+    private fun refreshMap() {
+        mGoogleMap?.let {
+            it.clear()
+            for(latlng in (activity as MainActivity).latLng) {
+                it.addMarker(MarkerOptions().position(latlng))
+            }
+        }
+
     }
 
     @SuppressLint("MissingPermission")

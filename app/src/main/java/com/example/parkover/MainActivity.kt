@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.parkover.add.AddActivity
 import com.example.parkover.ar.ARFragment
 import com.example.parkover.databinding.ActivityMainBinding
@@ -118,30 +120,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupTab() {
-        binding.bottomBar.setOnTabSelectListener(object :AnimatedBottomBar.OnTabSelectListener{
-            override fun onTabSelected(
-                lastIndex: Int,
-                lastTab: AnimatedBottomBar.Tab?,
-                newIndex: Int,
-                newTab: AnimatedBottomBar.Tab
-            ) {
-                when(newIndex){
-                    0->replaceFragment(MapFragment())
-                    1->replaceFragment(ARFragment())
-                    else-> {
-
-                    }
-                }
-            }
-
-        })
-        replaceFragment(MapFragment())
+        binding.viewPager.isUserInputEnabled = false
+        val adapter = HomeTabAdapter(this)
+        binding.viewPager.adapter = adapter
+        binding.bottomBar.setupWithViewPager2(binding.viewPager)
     }
 
-
-    fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
-            .commit()
-
-    }
 }

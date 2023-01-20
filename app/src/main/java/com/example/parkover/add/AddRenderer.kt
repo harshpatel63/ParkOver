@@ -184,7 +184,7 @@ class AddRenderer(val activity: AddActivity) :
     val earth = session?.earth ?: return
     if(earth.trackingState != TrackingState.TRACKING) return
     earthAnchor?.detach()
-    val altitude = -47.3 - 1.5
+    val altitude = earth.cameraGeospatialPose.altitude - 1.5
     val q = earth.cameraGeospatialPose.eastUpSouthQuaternion
     val qx = 0f
     val qy = 0f

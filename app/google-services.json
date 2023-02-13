@@ -1,63 +1,33 @@
 {
   "project_info": {
-    "project_number": "1074705210927",
-    "firebase_url": "https://parkover-36401-default-rtdb.firebaseio.com",
-    "project_id": "parkover-36401",
-    "storage_bucket": "parkover-36401.appspot.com"
+    "project_number": "503873216873",
+    "project_id": "parkover",
+    "storage_bucket": "parkover.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1074705210927:android:bd3226d184abecf79f30da",
-        "android_client_info": {
-          "package_name": "com.example.hackntrdb"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1074705210927-cc89c6egereo5vi66tgpvdphjn4glb5b.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDlkvK6abUx0tYaVkGTk6iAF0Eu5yJDcwc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1074705210927-cc89c6egereo5vi66tgpvdphjn4glb5b.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1074705210927:android:87a09009925743879f30da",
+        "mobilesdk_app_id": "1:503873216873:android:3d5e1f5815c74bda235df8",
         "android_client_info": {
           "package_name": "com.example.parkover"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1074705210927-cc89c6egereo5vi66tgpvdphjn4glb5b.apps.googleusercontent.com",
+          "client_id": "503873216873-fl8fkgv5m2v6krpufvvlktemktijfh4j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDlkvK6abUx0tYaVkGTk6iAF0Eu5yJDcwc"
+          "current_key": "AIzaSyCGcDWqKTLuzGraTcT462fwvRyX9XM8TDQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1074705210927-cc89c6egereo5vi66tgpvdphjn4glb5b.apps.googleusercontent.com",
+              "client_id": "503873216873-fl8fkgv5m2v6krpufvvlktemktijfh4j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
